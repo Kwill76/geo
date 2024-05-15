@@ -9,5 +9,12 @@ pipeline {
             sh 'mvn clean validate compile install test package'
             }
         }
+        stage('upload artifact'){
+            steps{
+                sh 'curl -uadmin:AP12Jwyh7JbpqnvnCMCzgc4JPaY -T \
+                target/bio*.jar "http://52.87.215.126:8081/artifactory/geolocation/geo/bio_${BUILD_ID}.jar"
+'
+            }
+        }
     }
 }
